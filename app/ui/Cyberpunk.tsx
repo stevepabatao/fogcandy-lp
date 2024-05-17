@@ -50,7 +50,7 @@ const Cyberpunk = () => {
                 </Canvas>
             </Suspense>
             <Image
-                    className="absolute -mt-[820px]"
+                    className="absolute -mt-[750px] lg:-mt-[820px] w-[350px] lg:w-[500px]"
                     src={'/fogcandy-logo.png'}
                     alt="The FogCandy Logo"
                     width={500}
