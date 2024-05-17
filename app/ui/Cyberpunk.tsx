@@ -6,6 +6,8 @@ import { OrbitControls } from "@react-three/drei"
 import { motion } from "framer-motion";
 import ActiveClouds from "./ActiveClouds";
 import { Suspense } from "react";
+import Image from "next/image";
+
 
 
 const Cyberpunk = () => {
@@ -15,9 +17,20 @@ const Cyberpunk = () => {
             <Suspense fallback={
                 <motion.p 
                     className="text-gray-100 text-2xl"
-                    animate={{ x: 180 }}
-                    transition={{ type: "spring", stiffness: 100, repeat: Infinity, duration: 2 }}
-    
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        duration: 0.3,
+                        ease: [0, 0.71, 0.2, 1.01],
+                        scale: {
+                            type: "spring",
+                            damping: 5,
+                            stiffness: 100,
+                            restDelta: 0.001,
+                            repeat: Infinity, 
+                            duration: 2
+                        }
+                    }}
                 >
                         Loading ...
                 </motion.p>
@@ -32,10 +45,17 @@ const Cyberpunk = () => {
                         intensity={25} // Adjust backlight intensity
                         color="#ffffff" // Optional: Set backlight color
                     />
-                    <ActiveClouds />
                     <MeshComponent /> {/* Scale the model down */}
+                    <ActiveClouds />
                 </Canvas>
             </Suspense>
+            <Image
+                    className="absolute -mt-[820px]"
+                    src={'/fogcandy-logo.png'}
+                    alt="The FogCandy Logo"
+                    width={500}
+                    height={100}
+                />
             <div className="absolute mt-[600px] text-center">
                 <motion.h1
                     className="flex text-6xl text-violet-100 items-center tracking-widest anton.className"
@@ -54,6 +74,7 @@ const Cyberpunk = () => {
                 >
                     COMING SOON
                 </motion.h1>
+
             </div>
 
         </div>
